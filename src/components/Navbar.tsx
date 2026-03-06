@@ -4,9 +4,10 @@ import { Button } from "@/components/ui/button";
 
 const navLinks = [
   { label: "Trading", href: "#trading" },
+  { label: "Accounts", href: "#accounts" },
   { label: "Platform", href: "#platform" },
-  { label: "Benefits", href: "#benefits" },
   { label: "About", href: "#about" },
+  { label: "FAQ", href: "#faq" },
 ];
 
 const Navbar = () => {

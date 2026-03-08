@@ -34,13 +34,18 @@ const HowItWorksSection = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="py-24 bg-card/30">
-      <div className="container">
+    <section ref={ref} className="py-24 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-card/30 via-background to-card/30" />
+      
+      <div className="container relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           className="text-center mb-16"
         >
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-primary text-sm font-medium mb-4">
+            Getting Started
+          </span>
           <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">
             How It <span className="text-gradient-gold">Works</span>
           </h2>
@@ -49,9 +54,11 @@ const HowItWorksSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 relative">
           {/* Connecting line */}
-          <div className="hidden lg:block absolute top-16 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+          <div className="hidden lg:block absolute top-20 left-[15%] right-[15%] h-px">
+            <div className="w-full h-full bg-gradient-to-r from-primary/40 via-accent/30 to-primary/40" />
+          </div>
 
           {steps.map((s, i) => (
             <motion.div
@@ -59,14 +66,16 @@ const HowItWorksSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: i * 0.15, duration: 0.5 }}
-              className="text-center relative"
+              className="text-center relative group"
             >
-              <div className="w-16 h-16 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center mx-auto mb-4 relative z-10">
-                <s.icon className="h-7 w-7 text-primary" />
+              <div className="w-20 h-20 rounded-2xl glass border-glow flex items-center justify-center mx-auto mb-6 relative z-10 group-hover:scale-110 transition-transform duration-300">
+                <s.icon className="h-8 w-8 text-primary" />
+                <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-primary text-primary-foreground text-[10px] font-bold flex items-center justify-center">
+                  {s.step}
+                </div>
               </div>
-              <div className="text-xs text-primary font-heading font-bold mb-2">STEP {s.step}</div>
-              <h3 className="text-lg font-heading font-semibold mb-2">{s.title}</h3>
-              <p className="text-sm text-muted-foreground">{s.desc}</p>
+              <h3 className="text-lg font-heading font-bold mb-2 text-foreground">{s.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed max-w-[200px] mx-auto">{s.desc}</p>
             </motion.div>
           ))}
         </div>

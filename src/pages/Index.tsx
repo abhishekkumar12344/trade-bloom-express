@@ -1,14 +1,14 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import StatsSection from "@/components/StatsSection";
-import TradingAssetsSection from "@/components/TradingAssetsSection";
+import ProfitabilitySection from "@/components/ProfitabilitySection";
 import BenefitsSection from "@/components/BenefitsSection";
+import TradingAssetsSection from "@/components/TradingAssetsSection";
 import HowItWorksSection from "@/components/HowItWorksSection";
 import AccountTypesSection from "@/components/AccountTypesSection";
 import PlatformSection from "@/components/PlatformSection";
+import SecuritySection from "@/components/SecuritySection";
 import TestimonialsSection from "@/components/TestimonialsSection";
-import AboutSection from "@/components/AboutSection";
-import FAQSection from "@/components/FAQSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 
@@ -18,14 +18,14 @@ const Index = () => {
       <Navbar />
       <HeroSection />
       <StatsSection />
-      <TradingAssetsSection />
+      <ProfitabilitySection />
       <BenefitsSection />
+      <TradingAssetsSection />
       <HowItWorksSection />
       <AccountTypesSection />
       <PlatformSection />
+      <SecuritySection />
       <TestimonialsSection />
-      <AboutSection />
-      <FAQSection />
       <CTASection />
       <Footer />
     </div>

@@ -18,65 +18,62 @@ const TradingAssetsSection = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="trading" ref={ref} className="py-24 relative overflow-hidden">
-      <div className="floating-orb w-[400px] h-[400px] bg-accent bottom-0 right-[-100px]" style={{ animationDelay: '2s' }} />
-      
+    <section id="trading" ref={ref} className="py-28 section-dark relative">
       <div className="container relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           className="text-center mb-16"
         >
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-accent text-sm font-medium mb-4">
-            Live Markets
-          </span>
-          <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">
-            Trade <span className="text-gradient-gold">70+ Assets</span>
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-heading font-bold mb-4">
+            Trade <span className="text-gradient-gold">70+ assets</span>
           </h2>
-          <p className="text-muted-foreground max-w-lg mx-auto">
-            Access forex, stocks, crypto, and commodities — all from one powerful platform with real-time data.
+          <p className="text-muted-foreground text-lg max-w-xl mx-auto">
+            Forex, stocks, crypto, and commodities — all from one platform with real-time data
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
           {assets.map((asset, i) => (
             <motion.div
               key={asset.name}
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: i * 0.06, duration: 0.4 }}
-              className="group glass rounded-xl p-5 border-glow hover:scale-[1.03] transition-all duration-300 cursor-pointer shine-effect"
+              className="group bg-card rounded-2xl p-5 border border-border/30 hover:border-primary/30 transition-all duration-300 cursor-pointer"
             >
               <div className="flex items-center justify-between mb-3">
-                <span className="text-[10px] text-muted-foreground bg-secondary/80 px-2 py-0.5 rounded-full uppercase tracking-wider font-medium">
+                <span className="text-[10px] text-muted-foreground bg-secondary px-2.5 py-1 rounded-full uppercase tracking-wider font-bold">
                   {asset.category}
                 </span>
                 {asset.up ? (
-                  <TrendingUp className="h-3.5 w-3.5 text-trading-green" />
+                  <TrendingUp className="h-4 w-4 text-trading-green" />
                 ) : (
-                  <TrendingDown className="h-3.5 w-3.5 text-trading-red" />
+                  <TrendingDown className="h-4 w-4 text-trading-red" />
                 )}
               </div>
-              <div className="font-heading font-semibold text-sm text-foreground">{asset.name}</div>
-              <div className="flex items-baseline justify-between mt-2">
+              <div className="font-heading font-bold text-foreground mb-1">{asset.name}</div>
+              <div className="flex items-baseline justify-between">
                 <span className="text-xl font-heading font-bold text-foreground">${asset.price}</span>
                 <span
-                  className={`text-xs font-bold px-2 py-0.5 rounded-md ${
-                    asset.up ? "text-trading-green bg-trading-green/10" : "text-trading-red bg-trading-red/10"
+                  className={`text-xs font-bold px-2 py-1 rounded-lg ${
+                    asset.up
+                      ? "text-trading-green bg-trading-green/10"
+                      : "text-trading-red bg-trading-red/10"
                   }`}
                 >
                   {asset.change}
                 </span>
               </div>
-              {/* Mini sparkline */}
-              <svg viewBox="0 0 100 30" className="w-full h-6 mt-3 opacity-40 group-hover:opacity-70 transition-opacity">
+              {/* Mini chart */}
+              <svg viewBox="0 0 100 24" className="w-full h-5 mt-3 opacity-30 group-hover:opacity-60 transition-opacity">
                 <path
-                  d={asset.up 
-                    ? "M0 25 Q15 20 25 22 T50 15 T75 10 T100 5" 
-                    : "M0 5 Q15 10 25 8 T50 18 T75 20 T100 25"
+                  d={asset.up
+                    ? "M0 20 Q15 18 25 16 T50 12 T75 6 T100 4"
+                    : "M0 4 Q15 8 25 10 T50 16 T75 18 T100 20"
                   }
                   fill="none"
-                  stroke={asset.up ? "hsl(145 70% 50%)" : "hsl(0 75% 55%)"}
+                  stroke={asset.up ? "hsl(145 72% 48%)" : "hsl(0 80% 55%)"}
                   strokeWidth="2"
                   strokeLinecap="round"
                 />

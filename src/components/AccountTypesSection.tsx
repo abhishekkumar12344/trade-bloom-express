@@ -56,53 +56,48 @@ const AccountTypesSection = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="accounts" ref={ref} className="py-24 relative overflow-hidden">
-      <div className="floating-orb w-[500px] h-[500px] bg-primary top-[20%] right-[-200px]" />
-      
+    <section id="accounts" ref={ref} className="py-28 section-purple relative">
       <div className="container relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           className="text-center mb-16"
         >
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-primary text-sm font-medium mb-4">
-            Pricing Plans
-          </span>
-          <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">
-            Choose Your <span className="text-gradient-gold">Account</span>
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-heading font-bold mb-4">
+            Choose your <span className="text-gradient-gold">account</span>
           </h2>
-          <p className="text-muted-foreground max-w-lg mx-auto">
-            Select the account type that matches your trading goals and experience level.
+          <p className="text-muted-foreground text-lg max-w-xl mx-auto">
+            Select the plan that matches your trading goals
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto perspective-container">
+        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {accounts.map((acc, i) => (
             <motion.div
               key={acc.name}
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: i * 0.15, duration: 0.5 }}
-              className={`relative rounded-2xl p-7 transition-all duration-500 hover:scale-[1.03] shine-effect ${
+              transition={{ delay: i * 0.12, duration: 0.5 }}
+              className={`relative rounded-3xl p-8 transition-all duration-300 ${
                 acc.highlight
-                  ? "glass-strong border-glow glow-gold z-10 scale-[1.02]"
-                  : "glass border-glow"
+                  ? "bg-gradient-to-b from-primary/10 via-card to-card border-2 border-primary/40 scale-[1.03]"
+                  : "bg-card border border-border/30 hover:border-primary/20"
               }`}
             >
               {acc.highlight && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-5 py-1 rounded-full bg-primary text-primary-foreground text-xs font-bold tracking-wide">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-6 py-1.5 rounded-full bg-primary text-primary-foreground text-xs font-heading font-bold tracking-wider uppercase">
                   Most Popular
                 </div>
               )}
 
               <div className="text-center mb-8 pt-2">
-                <div className={`w-14 h-14 rounded-2xl ${acc.highlight ? 'bg-primary/20' : 'bg-primary/10'} flex items-center justify-center mx-auto mb-4`}>
-                  <acc.icon className="h-7 w-7 text-primary" />
+                <div className={`w-16 h-16 rounded-2xl ${acc.highlight ? "bg-primary/20" : "bg-secondary"} flex items-center justify-center mx-auto mb-4`}>
+                  <acc.icon className="h-8 w-8 text-primary" />
                 </div>
-                <h3 className="text-xl font-heading font-bold mb-1 text-foreground">{acc.name}</h3>
-                <div className="text-4xl font-heading font-bold text-gradient-gold mt-2">{acc.deposit}</div>
+                <h3 className="text-xl font-heading font-bold mb-2 text-foreground">{acc.name}</h3>
+                <div className="text-5xl font-heading font-bold text-gradient-gold">{acc.deposit}</div>
                 <div className="text-xs text-muted-foreground mt-1">Minimum Deposit</div>
-                <div className="mt-3 inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold">
+                <div className="mt-4 inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-heading font-bold">
                   {acc.profit}
                 </div>
               </div>
@@ -118,15 +113,16 @@ const AccountTypesSection = () => {
                 ))}
               </ul>
 
-              <Button
-                className={`w-full rounded-xl h-11 gap-2 ${acc.highlight ? "glow-gold" : ""}`}
-                variant={acc.highlight ? "default" : "outline"}
-                asChild
+              <Link
+                to="/register"
+                className={`w-full flex items-center justify-center gap-2 py-3.5 rounded-xl font-heading font-bold text-sm transition-all duration-300 ${
+                  acc.highlight
+                    ? "btn-yellow"
+                    : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                }`}
               >
-                <Link to="/register">
-                  Get Started <ArrowRight className="h-4 w-4" />
-                </Link>
-              </Button>
+                Get Started <ArrowRight className="h-4 w-4" />
+              </Link>
             </motion.div>
           ))}
         </div>

@@ -22,15 +22,15 @@ const faqs = [
   },
   {
     q: "What assets can I trade on TradeX?",
-    a: "TradeX offers 70+ trading assets including forex pairs, stocks (Apple, Tesla, etc.), cryptocurrencies (Bitcoin, Ethereum), commodities (Gold, Silver), and indices.",
+    a: "TradeX offers 70+ trading assets including forex pairs, stocks, cryptocurrencies, commodities, and indices.",
   },
   {
     q: "Can I trade on weekends?",
-    a: "Yes! TradeX offers a unique Non-Stop Trading mode that allows you to trade specially selected assets on weekends and holidays, so you never miss an opportunity.",
+    a: "Yes! TradeX offers a unique Non-Stop Trading mode for weekends and holidays, so you never miss an opportunity.",
   },
   {
     q: "Do you offer a demo account?",
-    a: "Absolutely. Every new user gets a free demo account loaded with $10,000 in virtual funds. Practice your strategies risk-free before trading with real money.",
+    a: "Absolutely. Every new user gets a free demo account loaded with $10,000 in virtual funds to practice risk-free.",
   },
 ];
 
@@ -39,18 +39,21 @@ const FAQSection = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="py-24">
-      <div className="container max-w-3xl">
+    <section id="faq" ref={ref} className="py-24 relative">
+      <div className="container max-w-3xl relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           className="text-center mb-12"
         >
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-primary text-sm font-medium mb-4">
+            Support
+          </span>
           <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">
             Frequently Asked <span className="text-gradient-gold">Questions</span>
           </h2>
           <p className="text-muted-foreground">
-            Got questions? We've got answers. Can't find what you're looking for? Contact our 24/7 support.
+            Got questions? We've got answers. Contact our 24/7 support for anything else.
           </p>
         </motion.div>
 
@@ -64,12 +67,12 @@ const FAQSection = () => {
               <AccordionItem
                 key={i}
                 value={`faq-${i}`}
-                className="rounded-xl border border-border/50 bg-card px-5 data-[state=open]:border-primary/30"
+                className="rounded-xl glass border-glow px-6 data-[state=open]:glow-gold transition-all duration-300"
               >
-                <AccordionTrigger className="text-sm font-heading font-semibold hover:no-underline py-4">
+                <AccordionTrigger className="text-sm font-heading font-semibold hover:no-underline py-5 text-foreground">
                   {faq.q}
                 </AccordionTrigger>
-                <AccordionContent className="text-sm text-muted-foreground leading-relaxed pb-4">
+                <AccordionContent className="text-sm text-muted-foreground leading-relaxed pb-5">
                   {faq.a}
                 </AccordionContent>
               </AccordionItem>
